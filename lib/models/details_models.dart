@@ -1,9 +1,9 @@
 class QuranDetails {
   bool? status;
-  String? nomor;
+  int? nomor;
   String? nama;
   String? namaLatin;
-  String? jumlahAyat;
+  int? jumlahAyat;
   String? tempatTurun;
   String? arti;
   String? deskripsi;
@@ -57,7 +57,7 @@ class Ayat {
   });
 
   factory Ayat.fromJson(Map<String, dynamic> json) => Ayat(
-        nomor: json['nomor'],
+        nomor: json['nomor'].toString(),
         ar: json['ar'],
         tr: json['tr'],
         idn: json['idn'],
