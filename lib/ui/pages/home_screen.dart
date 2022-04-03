@@ -177,7 +177,51 @@ class HomeScreen extends StatelessWidget {
                             }
                           }
                         }),
-                    Text('data 2'),
+                    FutureBuilder<List<SurahModel>>(
+                        future: listSurah.getData(),
+                        builder: (context,
+                            AsyncSnapshot<List<SurahModel>> snapshot) {
+                          print(snapshot.data);
+
+                          var state = snapshot.connectionState;
+                          if (state != ConnectionState.done) {
+                            return ListView.separated(
+                                itemBuilder: (context, index) =>
+                                    CircularProgressIndicator(),
+                                separatorBuilder: (context, index) => SizedBox(
+                                      height: 10,
+                                    ),
+                                itemCount: 8);
+                          } else {
+                            if (snapshot.hasData) {
+                              return ListView.separated(
+                                  itemBuilder: (context, index) {
+                                    return SurahItem(
+                                      snapshot.data![index].nomor,
+                                      snapshot.data![index].nama,
+                                      snapshot.data![index].nama_latin,
+                                      snapshot.data![index].jumlah_ayat,
+                                      snapshot.data![index].tempat_turun,
+                                    );
+                                  },
+                                  separatorBuilder: (context, index) {
+                                    return Divider(
+                                      color: kGreyColor,
+                                    );
+                                  },
+                                  itemCount: snapshot.data!.length);
+                            } else if (snapshot.hasError) {
+                              return Center(
+                                child: Text(
+                                  snapshot.error.toString(),
+                                ),
+                              );
+                            } else {
+                              return Text('');
+                            }
+                          }
+                        }),
+                    // Text('data 2'),
                   ],
                 ),
               ),
@@ -214,7 +258,9 @@ class HomeScreen extends StatelessWidget {
       ),
       body: SingleChildScrollView(
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+          padding: EdgeInsets.symmetric(
+            horizontal: 20,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
