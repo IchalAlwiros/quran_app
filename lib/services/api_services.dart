@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:quran_app/models/details_models.dart';
-import 'package:quran_app/ui/widgets/detail_surah.dart';
+import 'package:quran_app/ui/pages/detail_surah.dart';
 
 import '../models/quran_models.dart';
 
