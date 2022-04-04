@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:quran_app/shared/theme.dart';
-import 'package:quran_app/ui/widgets/detail_surah.dart';
+import 'package:quran_app/ui/pages/detail_surah.dart';
 
 class SurahItem extends StatelessWidget {
   final int nomorSurah;
@@ -21,7 +21,10 @@ class SurahItem extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => DetailSurah(nomor: nomorSurah)));
+                  builder: (context) => DetailSurah(
+                        nomor: nomorSurah,
+                        nama: nama_latin,
+                      )));
         }),
         child: ListTile(
           leading: Container(
@@ -59,7 +62,7 @@ class SurahItem extends StatelessWidget {
                     fontSize: 12,
                     fontWeight: bold,
                   )),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
               Icon(
@@ -67,7 +70,7 @@ class SurahItem extends StatelessWidget {
                 color: kWhiteColor,
                 size: 8,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 5,
               ),
               Text(jumlah_ayat.toString() + ' ayat'.toUpperCase(),
