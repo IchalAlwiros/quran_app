@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:quran_app/shared/theme.dart';
+import 'package:quran_app/ui/widgets/shimmer_loading.dart';
 
 import '../../models/quran_models.dart';
 import '../../services/api_services.dart';
@@ -143,7 +144,7 @@ class HomeScreen extends StatelessWidget {
                           if (state != ConnectionState.done) {
                             return ListView.separated(
                                 itemBuilder: (context, index) =>
-                                    CircularProgressIndicator(),
+                                    ShimmerSkelton(),
                                 separatorBuilder: (context, index) => SizedBox(
                                       height: 10,
                                     ),
@@ -187,7 +188,7 @@ class HomeScreen extends StatelessWidget {
                           if (state != ConnectionState.done) {
                             return ListView.separated(
                                 itemBuilder: (context, index) =>
-                                    CircularProgressIndicator(),
+                                    ShimmerSkelton(),
                                 separatorBuilder: (context, index) => SizedBox(
                                       height: 10,
                                     ),
